@@ -2,7 +2,6 @@ import "./styles.css";
 import React, { useEffect, useState } from "react";
 
 function Search(props) {
-  console.log(props);
   const [searchInputValue, setsearchInputValue] = useState("");
   const { getDataFromSearchComponent, apiCalledSuccess, setApiCalledSuccess } =
     props;
@@ -44,7 +43,7 @@ function Search(props) {
           placeholder="Search now"
         ></input>
         <button onClick={handleClick} type="submit">
-          <i class="fa fa-search"></i>
+          <i className="fa fa-search"></i>
         </button>
       </div>
     </div>
