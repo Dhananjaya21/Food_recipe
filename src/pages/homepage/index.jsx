@@ -6,16 +6,21 @@ import FavouritesItem from "../../components/favourites-item";
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'filterFavourites':
-      return state;
+    case "filterFavourites":
+      console.log(action);
+      return {
+        ...state,
+        filteredValue: action.value,
+      };
+      // return state;
 
     default:
       return state;
   }
 };
 
-const initState = {
-  filteredValue: '',
+const initialState = {
+  filteredValue: "",
 };
 const Homepage = () => {
   const [loadingState, setLoadingState] = useState(false);
@@ -24,7 +29,7 @@ const Homepage = () => {
   //favourites data state
   const [favourites, setFavourites] = useState([]);
   const [apiCalledSuccess, setApiCalledSuccess] = useState(false);
-  const [filteredState, dispatch] = useReducer(reducer, initState);
+  const [filteredState, dispatch] = useReducer(reducer, initialState);
 
   const getDataFromSearchComponent = (data) => {
     async function getRecepies() {
@@ -77,6 +82,12 @@ const Homepage = () => {
     setFavourites(extractFavouritesFromLocalStorageOnPageLoad);
   }, []);
 
+  const filteredFavouritesItem = favourites.filter((item) =>
+    item.title.toLowerCase().includes(filteredState.filteredValue)
+  );
+
+  console.log(filteredState, "filteredState");
+
   return (
     <div className="App-header">
       <Search
@@ -87,12 +98,18 @@ const Homepage = () => {
       <div className="favourites-wrapper">
         <h1 className="favourites-title">Favourites</h1>
         <div className="search-favourites">
-          <input onchange={(event)=> dispatch({type : 'filterFavourites', value: event.target.value })} 
-          name="searchfavourites" placeholder="Search Favourites" />
+          <input
+            onChange={(event) =>
+              dispatch({ type: "filterFavourites", value: event.target.value })
+            }
+            value={filteredState.filteredValue}
+            name="searchfavourites"
+            // placeholder="Search Favourites"
+          />
         </div>
         <div className="favourites">
-          {favourites && favourites.length > 0
-            ? favourites.map((item) => (
+          {filteredFavouritesItem && filteredFavouritesItem.length > 0
+            ? filteredFavouritesItem.map((item) => (
                 <FavouritesItem
                   removeFromFavourites={() => removeFromFavourites(item)}
                   id={item.id}
