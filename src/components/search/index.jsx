@@ -22,7 +22,7 @@ function Search(props) {
       setApiCalledSuccess(false)
     }
 
-  },[apiCalledSuccess])
+  },[apiCalledSuccess,setApiCalledSuccess])
 
   return (
     <div className="topnav">

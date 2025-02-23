@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from "react";
+import { useCallback, useEffect, useReducer, useState } from "react";
 import Search from "../../components/search";
 import "./styles.css";
 import RecipeItem from "../../components/recipe-item";
@@ -12,7 +12,7 @@ const reducer = (state, action) => {
         ...state,
         filteredValue: action.value,
       };
-      // return state;
+    // return state;
 
     default:
       return state;
@@ -50,20 +50,24 @@ const Homepage = () => {
     getRecepies();
   };
 
-  const addToFavourites = (getCurrentRecepeItem) => {
-    let copyFavourites = [...(favourites || [])]; // Ensure it's always an array
-    const index = copyFavourites.findIndex(
-      (item) => item.id === getCurrentRecepeItem.id
-    );
-    if (index === -1) {
-      copyFavourites.push(getCurrentRecepeItem);
-      setFavourites(copyFavourites);
-      //save in local storage
-      localStorage.setItem("favourites", JSON.stringify(copyFavourites));
-    } else {
-      alert("already in favourites");
-    }
-  };
+  const addToFavourites = useCallback(
+    (getCurrentRecepeItem) => {
+      let copyFavourites = [...(favourites || [])]; // Ensure it's always an array
+      const index = copyFavourites.findIndex(
+        (item) => item.id === getCurrentRecepeItem.id
+      );
+      if (index === -1) {
+        copyFavourites.push(getCurrentRecepeItem);
+        setFavourites(copyFavourites);
+        //save in local storage
+        localStorage.setItem("favourites", JSON.stringify(copyFavourites));
+        window.scrollTo({ top: "0", behavior: "smooth" });
+      } else {
+        alert("already in favourites");
+      }
+    },
+    [favourites]
+  );
 
   const removeFromFavourites = (getCurrentRecepeItem) => {
     let copyFavourites = [...(favourites || [])]; // Ensure it's always an array
@@ -85,6 +89,21 @@ const Homepage = () => {
   const filteredFavouritesItem = favourites.filter((item) =>
     item.title.toLowerCase().includes(filteredState.filteredValue)
   );
+
+  const renderRecipes = useCallback(() => {
+    if (recipes && recipes.length > 0) {
+      return recipes.map((item) => (
+        <RecipeItem
+          addToFavourites={() => addToFavourites(item)}
+          id={item.id}
+          image={item.image}
+          title={item.title}
+        />
+      ));
+    } else {
+      return null;
+    }
+  }, [recipes, addToFavourites]);
 
   console.log(filteredState, "filteredState");
 
@@ -121,18 +140,7 @@ const Homepage = () => {
         </div>
       </div>
       {loadingState && <div>loading</div>}
-      <div className="items">
-        {recipes && recipes.length > 0
-          ? recipes.map((item) => (
-              <RecipeItem
-                addToFavourites={() => addToFavourites(item)}
-                id={item.id}
-                image={item.image}
-                title={item.title}
-              />
-            ))
-          : null}
-      </div>
+      <div className="items">{renderRecipes()}</div>
     </div>
   );
 };
