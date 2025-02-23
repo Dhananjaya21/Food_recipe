@@ -1,0 +1,108 @@
+.items {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 60px;
+}
+
+.favourites-wrapper {
+  flex-direction: column;
+  display: flex;
+}
+
+.favourites-title {
+  color: #e3ad6c;
+  font-weight: 700;
+  font-size: 35px;
+  margin: 12px 0 12px 0px;
+  margin: 20px 0px;
+  margin-bottom: 30px;
+  overflow: auto;
+}
+
+.favourites {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 30px;
+  overflow: auto;
+}
+
+/* Add a black background color to the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #e3ad6c;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: left;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #e7b078;
+  color: black;
+}
+
+/* Style the "active" element to highlight the current page */
+/* .topnav a.active {
+    background-color: #2196F3;
+    color: white;
+  } */
+
+.search-container {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  padding: 6px;
+}
+
+.search-container input[type="text"] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: 1px;
+  font-size: 17px;
+}
+
+.topnav .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #e3ad6c;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
+@media screen and (max-width: 600px) {
+  .topnav a,
+  .search-container {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .search-container input[type="text"] {
+    border: 1px solid #ccc;
+  }
+}

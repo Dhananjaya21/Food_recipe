@@ -1,0 +1,86 @@
+.search-container {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  padding: 6px;
+}
+
+.search-container input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: 1px;
+  font-size: 17px;
+}
+
+.topnav .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.recipe-item {
+  border: 1px solid red;
+  padding: auto;
+  box-shadow: 0px 0px 10px 0px rgba(250, 100, 0, 1);
+  background-color: #ca8434;
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  text-align: center;
+  padding: 20px;
+  width: fit-content; 
+}
+
+.recipe-item img {
+  width: 100%; /* Ensures the container matches the image */
+  height: auto; /* Maintains aspect ratio */
+}
+
+.recipe-item p {
+  color: rgb(3, 3, 3);
+  font-weight: 700;
+  font-size: 15px;
+  margin: 12px 0;
+  text-align: center;
+  width: 90%; /* Keep text within bounds */
+  word-wrap: break-word; /* Breaks long words */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.recipe-item button {
+  background-color: yellow;
+  border: 1px solid transparent;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto; /* Centers the button horizontally */
+}
+
+
+/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
+@media screen and (max-width: 600px) {
+
+  .topnav a,
+  .search-container {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+
+  .search-container input[type=text] {
+    border: 1px solid #ccc;
+  }
+}
