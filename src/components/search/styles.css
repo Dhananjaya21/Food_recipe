@@ -27,12 +27,6 @@
   color: black;
 }
 
-/* Style the "active" element to highlight the current page */
-/* .topnav a.active {
-  background-color: #2196F3;
-  color: white;
-} */
-
 .search-container {
   margin-left: auto;
   display: flex;
@@ -40,11 +34,11 @@
   padding: 6px;
 }
 
-.search-container input[type=text] {
+.search-container input[type="text"] {
   padding: 6px;
   margin-top: 8px;
   font-size: 17px;
-  border:1px;
+  border: 1px;
   font-size: 17px;
 }
 
@@ -65,7 +59,8 @@
 
 /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
 @media screen and (max-width: 600px) {
-  .topnav a, .search-container {
+  .topnav a,
+  .search-container {
     float: none;
     display: block;
     text-align: left;
@@ -73,7 +68,7 @@
     margin: 0;
     padding: 14px;
   }
-  .search-container input[type=text] {
+  .search-container input[type="text"] {
     border: 1px solid #e3ad6c;
   }
 }

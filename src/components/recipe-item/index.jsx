@@ -6,7 +6,7 @@ const RecipeItem = (props) => {
   return (
     <div className="recipe-item">
       <div key={id}>
-        <img src={image} alt="test" />
+        <img src={image} />
       </div>
 
       <p>{title}</p>

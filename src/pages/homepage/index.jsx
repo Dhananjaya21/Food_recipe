@@ -114,8 +114,10 @@ const Homepage = () => {
         apiCalledSuccess={apiCalledSuccess}
         setApiCalledSuccess={setApiCalledSuccess}
       />
+
       <div className="favourites-wrapper">
-        <h1 className="favourites-title">Favourites</h1>
+        <h2 className="section-title">Favourites</h2>
+
         <div className="search-favourites">
           <input
             onChange={(event) =>
@@ -123,23 +125,29 @@ const Homepage = () => {
             }
             value={filteredState.filteredValue}
             name="searchfavourites"
-            // placeholder="Search Favourites"
+            className="search-box"
+            placeholder="Search favourites..."
           />
         </div>
+
         <div className="favourites">
-          {filteredFavouritesItem && filteredFavouritesItem.length > 0
-            ? filteredFavouritesItem.map((item) => (
-                <FavouritesItem
-                  removeFromFavourites={() => removeFromFavourites(item)}
-                  id={item.id}
-                  image={item.image}
-                  title={item.title}
-                />
-              ))
-            : null}
+          {filteredFavouritesItem && filteredFavouritesItem.length > 0 ? (
+            filteredFavouritesItem.map((item) => (
+              <FavouritesItem
+                removeFromFavourites={() => removeFromFavourites(item)}
+                id={item.id}
+                image={item.image}
+                title={item.title}
+              />
+            ))
+          ) : (
+            <p className="empty-message">No favourites added yet.</p>
+          )}
         </div>
       </div>
-      {loadingState && <div>loading</div>}
+
+      {loadingState && <div className="loading">Loading...</div>}
+
       <div className="items">{renderRecipes()}</div>
     </div>
   );
