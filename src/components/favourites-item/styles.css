@@ -1,35 +1,48 @@
-.recipe-item {
+.topnav .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.favourite-item {
   border: 1px solid red;
   padding: auto;
   box-shadow: 0px 0px 10px 0px rgba(250, 100, 0, 1);
   background-color: #ca8434;
   display: flex;
   flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
   text-align: center;
   padding: 20px;
   width: fit-content; 
+  max-width: 150px;
 }
 
-.recipe-item img {
+.favourite-item img {
   width: 100%; /* Ensures the container matches the image */
   height: auto; /* Maintains aspect ratio */
 }
 
-.recipe-item p {
+.favourite-item p {
   color: rgb(3, 3, 3);
   font-weight: 700;
   font-size: 15px;
   margin: 12px 0;
   text-align: center;
-  width: 90%; /* Keep text within bounds */
+  width: 100%; /* Keep text within bounds */
   word-wrap: break-word; /* Breaks long words */
-  overflow: hidden;
+  overflow:hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  max-width: 150px;
 }
 
-.recipe-item button {
+.favourite-item button {
   background-color: yellow;
   border: 1px solid transparent;
   padding: 8px 12px;

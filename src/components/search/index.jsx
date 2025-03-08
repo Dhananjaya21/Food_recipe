@@ -16,13 +16,18 @@ function Search(props) {
     getDataFromSearchComponent(searchInputValue);
   };
 
-  useEffect(()=>{
-    if(apiCalledSuccess){
-      setsearchInputValue('')
-      setApiCalledSuccess(false)
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleClick(event);
     }
+  };
 
-  },[apiCalledSuccess,setApiCalledSuccess])
+  useEffect(() => {
+    if (apiCalledSuccess) {
+      setsearchInputValue("");
+      setApiCalledSuccess(false);
+    }
+  }, [apiCalledSuccess, setApiCalledSuccess]);
 
   return (
     <div className="topnav">
@@ -41,6 +46,7 @@ function Search(props) {
           id="myInput"
           type="text"
           placeholder="Search now"
+          onKeyDown={handleKeyDown}
         ></input>
         <button onClick={handleClick} type="submit">
           <i className="fa fa-search"></i>

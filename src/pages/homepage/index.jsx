@@ -113,38 +113,43 @@ const Homepage = () => {
         getDataFromSearchComponent={getDataFromSearchComponent}
         apiCalledSuccess={apiCalledSuccess}
         setApiCalledSuccess={setApiCalledSuccess}
+        dispatch={dispatch}
       />
+      
+        <div className="favourites-wrapper">
+          <h2 className="section-title">Favourites</h2>
 
-      <div className="favourites-wrapper">
-        <h2 className="section-title">Favourites</h2>
+          <div className="search-favourites">
+            <input
+              onChange={(event) =>
+                dispatch({
+                  type: "filterFavourites",
+                  value: event.target.value,
+                })
+              }
+              value={filteredState.filteredValue}
+              name="searchfavourites"
+              className="search-box"
+              placeholder="Search favourites..."
+            />
+          </div>
 
-        <div className="search-favourites">
-          <input
-            onChange={(event) =>
-              dispatch({ type: "filterFavourites", value: event.target.value })
-            }
-            value={filteredState.filteredValue}
-            name="searchfavourites"
-            className="search-box"
-            placeholder="Search favourites..."
-          />
+          <div className="favourites">
+            {filteredFavouritesItem && filteredFavouritesItem.length > 0 ? (
+              filteredFavouritesItem.map((item) => (
+                <FavouritesItem
+                  removeFromFavourites={() => removeFromFavourites(item)}
+                  id={item.id}
+                  image={item.image}
+                  title={item.title}
+                />
+              ))
+            ) : (
+              <p className="empty-message">No favourites added yet.</p>
+            )}
+          </div>
         </div>
-
-        <div className="favourites">
-          {filteredFavouritesItem && filteredFavouritesItem.length > 0 ? (
-            filteredFavouritesItem.map((item) => (
-              <FavouritesItem
-                removeFromFavourites={() => removeFromFavourites(item)}
-                id={item.id}
-                image={item.image}
-                title={item.title}
-              />
-            ))
-          ) : (
-            <p className="empty-message">No favourites added yet.</p>
-          )}
-        </div>
-      </div>
+      
 
       {loadingState && <div className="loading">Loading...</div>}
 
